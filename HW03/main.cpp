@@ -2,6 +2,7 @@
 #include "SimpleVector.h"
 using namespace std;
 /*
+필수 기능 구현
 - 클래스의 이름은 SimpleVector라고 합니다.
 - 타입에 의존하지 않고 데이터를 받을수 있는 배열을 멤버변수로 갖습니다.
 - 생성자는 아래와 같이 구현 합니다.
