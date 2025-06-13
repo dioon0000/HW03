@@ -3,6 +3,7 @@
 using namespace std;
 
 int main(){
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); //메모리 누수 확인
 	SimpleVector<int> s(10);
     s.push_back(1);
     s.push_back(3);
