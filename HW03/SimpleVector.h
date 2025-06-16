@@ -15,10 +15,14 @@ public:
 		data = new T[currentCapacity];
 	}
 	SimpleVector(const SimpleVector& other){
-		data = other.data; //¸Ş¸ğ¸® ÁÖ¼Ò¸¦ ±×´ë·Î º¹»çÇØÁáÀ½ (¾èÀº º¹»ç)
+		//data = other.data; //ë©”ëª¨ë¦¬ ì£¼ì†Œë¥¼ ê·¸ëŒ€ë¡œ ë³µì‚¬í•´ì¤¬ìŒ (ì–•ì€ ë³µì‚¬)
+
+		for(int i=0; i<currentSize; ++i){
+			data[i] = other.data[i];
+		}
 
 		/*
-		ÇØ´ç ÄÚµå´Â ±íÀº º¹»ç (µÎ dataÀÇ ÁÖ¼Ò°ªÀÌ ´Ù¸£´Ù)
+		í•´ë‹¹ ì½”ë“œëŠ” ê¹Šì€ ë³µì‚¬ (ë‘ dataì˜ ì£¼ì†Œê°’ì´ ë‹¤ë¥´ë‹¤)
 		for(int i=0; i<currentSize; ++i)
 		{
 			data[i] = other.data[i];
@@ -29,6 +33,7 @@ public:
 	}
 	~SimpleVector(){
 		delete[] data;
+		data = nullptr;
 	}
 	void push_back(const T& value){
 		if(currentSize < currentCapacity)
@@ -61,9 +66,23 @@ private:
 	int currentSize;
 	int currentCapacity;
 	void resize(int newCapacity){
-		data = new T[newCapacity]; 
-		// ±âÁ¸¿¡ data°¡ °¡¸®Å°°í ÀÖ´ø Èü °ø°£Àº ÃÊ±âÈ­ ÇØÁÖÁö ¾Ê°í 
-		// »õ·Î¿î Èü °ø°£ÀÇ ÁÖ¼Ò¸¦ data¿¡ ³Ö´Â ÇàÀ§¶ó°í È®ÀÎÇÏ¸é µÈ´Ù
+		//data = new T[newCapacity]; 
+		// ê¸°ì¡´ì— dataê°€ ê°€ë¦¬í‚¤ê³  ìˆë˜ í™ ê³µê°„ì€ ì´ˆê¸°í™” í•´ì£¼ì§€ ì•Šê³  
+		// ìƒˆë¡œìš´ í™ ê³µê°„ì˜ ì£¼ì†Œë¥¼ dataì— ë„£ëŠ” í–‰ìœ„ë¼ê³  í™•ì¸í•˜ë©´ ëœë‹¤
+		if(currentCapacity>newCapacity)
+		{
+			return;
+		}
+		T* temp = new T[newCapacity];
+		for(int i=0; i<currentSize; ++i)
+		{
+			temp[i] = data[i];
+		}
+		delete[] data;
+		data = nullptr;
+
+		currentCapacity = newCapacity;
+		data = temp;
 	}
 };
 #endif // !SIMPLEVECTOR_H_

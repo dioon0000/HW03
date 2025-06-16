@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); //¸Ş¸ğ¸® ´©¼ö È®ÀÎ
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); //ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ í™•ì¸
 	SimpleVector<int> s(10);
     s.push_back(1);
     s.push_back(3);
